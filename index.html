@@ -4,55 +4,20 @@
 <head>
     <title>Etch-A-Sketch</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./CSS/style.css" />
 </head>
 
 <body>
     <h1>Etch-A-Sketch!</h1>
-
-    <button id="reset-button">Reset</button>
-
+    <div id="buttons-container">
+        <button class="option-buttons selected" id="black-and-white-mode">Black and White Mode</button>
+        <button class="option-buttons" id="opacity-mode">Opacity Mode</button>
+        <button class="option-buttons" id="color-mode">Color Mode</button>
+        <button id="reset-button">Reset</button>
+    </div>
     <div class="grid-container"></div>
 
-    <script>
-        const gridContainer = document.querySelector('.grid-container');
-        const resetButton = document.querySelector('#reset-button');
-        let gridSize = 16;
-
-        drawGrid(gridSize);       
-
-        function selectSquare() {
-            this.classList.add('selected');
-        }
-
-        function drawGrid(size) {
-            let numSquares = size * size;
-            gridContainer.textContent = ``;
-
-            gridContainer.style.cssText = `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr);`            
-
-            for (i = 0; i < numSquares; i++) {
-                div = document.createElement('div');
-                div.classList.add('gridSquare');
-                gridContainer.appendChild(div);
-            }
-        
-            let allDivs = document.querySelectorAll('.gridSquare')
-
-            allDivs.forEach(div => div.addEventListener('mouseover', selectSquare));
-        }
-
-        resetButton.addEventListener('click', () => {
-            gridSize = parseInt(prompt("What grid size would you like? 1-100", 16));
-            if (!Number.isInteger(gridSize) || gridSize <= 0 || gridSize > 100) {
-                alert('Please pick a whole number between 1 and 100.');
-                return;
-            } else {
-                drawGrid(gridSize);
-            }
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
