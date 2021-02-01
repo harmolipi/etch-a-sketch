@@ -3,47 +3,11 @@ const resetButton = document.querySelector('#reset-button');
 const modeButtons = document.querySelectorAll('.option-buttons');
 const currentMode = document.querySelector('#current-mode');
 let modeSelection = 'black-and-white-mode';
-
-modeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        modeSelection = btn.id;
-        modeButtons.forEach((btn) => {
-            btn.classList.remove('selected');
-        });
-        btn.classList.add('selected');
-    });
-});
-
 let gridSize = 16;
 
 drawGrid(gridSize);
 
-function selectSquare() {
-    switch (modeSelection) {
-        case 'black-and-white-mode':
-            this.classList.remove('gray');
-            this.style.backgroundColor = 'black';
-            this.style.opacity = 1;
-            break;
-        case 'opacity-mode':
-            let currentOpacity = Number(this.style.backgroundColor.slice(-4, -1));
-            if (currentOpacity <= 0.9) {
-                this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
-                this.classList.add('gray');
-            } else if (this.classList.contains('gray') && this.style.backgroundColor === 'rgb(0, 0, 0)') {
-                return;
-            } else {
-                this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-            }
-            break;
-        case 'color-mode':
-            this.classList.remove('gray');
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            break;
-    }
-
-}
-
+//functions
 function drawGrid(size) {
     let numSquares = size * size;
 
@@ -70,4 +34,40 @@ function resetGrid() {
     }
 }
 
+function selectSquare() {
+    switch (modeSelection) {
+        case 'black-and-white-mode':
+            this.classList.remove('gray');
+            this.style.backgroundColor = 'black';
+            this.style.opacity = 1;
+            break;
+        case 'gray-mode':
+            let currentOpacity = Number(this.style.backgroundColor.slice(-4, -1));
+            if (currentOpacity <= 0.9) {
+                this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity + 0.1})`;
+                this.classList.add('gray');
+            } else if (this.classList.contains('gray') && this.style.backgroundColor === 'rgb(0, 0, 0)') {
+                return;
+            } else {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            }
+            break;
+        case 'color-mode':
+            this.classList.remove('gray');
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            break;
+    }
+
+}
+
+//event listeners
 resetButton.addEventListener('click', resetGrid);
+modeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        modeSelection = btn.id;
+        modeButtons.forEach((btn) => {
+            btn.classList.remove('selected');
+        });
+        btn.classList.add('selected');
+    });
+});
