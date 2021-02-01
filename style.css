@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+}
+
+#reset-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    margin: 10px auto;
+    aspect-ratio: 1 / 1;
+    max-height: 80vh;
+    max-width: 80vw;
+    border: 1px solid;
+    background-color: #ddd;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+}
+
+.gridSquare {
+    background-color: #eee;
+}
+
+.selected {
+    background-color: #000;
+}
